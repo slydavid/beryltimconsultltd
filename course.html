@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Academy | Beryltim Consult Ltd</title>
+    <!-- Google Fonts for Modern Premium Sans-Serif Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    
+    <style>
+        /* --- CORE DESIGN SYSTEM VARIABLES --- */
+        :root {
+            --white: #ffffff;
+            --primary-navy: #17213f;
+            --secondary-blue: #00a0dc;
+            --accent-green: #4fe14a;
+            --dark-green: #318c2e;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(23, 33, 63, 0.05);
+            --card-shadow: 0 20px 40px -15px rgba(23, 33, 63, 0.04);
+            --subtle-gray: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --input-bg: #f8fafc;
+            --input-border: rgba(23, 33, 63, 0.06);
+            --hero-gradient: radial-gradient(circle at 90% 10%, rgba(0, 160, 220, 0.05) 0%, rgba(255, 255, 255, 0) 60%);
+        }
+
+        [data-theme="dark"] {
+            --white: #0f172a;
+            --primary-navy: #ffffff;
+            --glass-bg: rgba(15, 23, 42, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+            --subtle-gray: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --card-bg: #1e293b;
+            --input-bg: #0f172a;
+            --input-border: rgba(255, 255, 255, 0.1);
+            --hero-gradient: radial-gradient(circle at 90% 10%, rgba(0, 160, 220, 0.1) 0%, rgba(15, 23, 42, 0) 65%);
+        }
+
+        /* --- GLOBAL RESET & SMOOTHING --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            background: rgba(0, 160, 220, 0.08);
+            color: var(--secondary-blue);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 160, 220, 0.15);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+
+        /* --- BUTTON SYSTEM --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.25rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-navy);
+            color: var(--white) !important;
+            box-shadow: 0 10px 25px -5px rgba(23, 33, 63, 0.3);
+        }
+
+        [data-theme="dark"] .btn-primary {
+            background-color: var(--secondary-blue);
+            color: #ffffff !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 160, 220, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            opacity: 0.95;
+        }
+
+        /* --- FLOATING NAVIGATION BAR WITH BLUR --- */
+        header {
+            position: fixed;
+            top: 1.5rem;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--card-shadow);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary-navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--accent-green));
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 2.25rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-navy);
+            font-weight: 600;
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            opacity: 1;
+            color: var(--secondary-blue);
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary-navy);
+        }
+
+        /* --- ACADEMY HERO AREA --- */
+        .page-header-block {
+            background-color: #17213f;
+            padding: 13rem 0 6rem 0;
+            color: #ffffff;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 160, 220, 0.15) 0%, #17213f 70%);
+        }
+
+        [data-theme="dark"] .page-header-block {
+            background: radial-gradient(circle at 80% 20%, rgba(0, 160, 220, 0.1) 0%, #0f172a 70%);
+        }
+
+        .page-header-block h1 {
+            font-size: 4rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .page-header-block p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        /* --- DYNAMIC FILTER CONTROLS --- */
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.75rem 1.75rem;
+            border-radius: 100px;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+        }
+
+        .filter-btn.active-filter {
+            background: var(--secondary-blue);
+            color: #ffffff;
+            border-color: var(--secondary-blue);
+        }
+
+        /* --- REAL-TIME PERFORMANCE METRICS BAR --- */
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            margin-top: -5rem;
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .metric-item h3 {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-item p {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* --- DETAILED COURSE STRIP LAYOUT --- */
+        .course-strip {
+            background-color: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3.5rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--card-shadow);
+            display: block;
+        }
+
+        .course-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .course-title-area h2 {
+            font-size: 2.25rem;
+            color: var(--primary-navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .course-meta-tags {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.35rem 0.85rem;
+            background: var(--subtle-gray);
+            border-radius: 6px;
+            color: var(--text-muted);
+            border: 1px solid var(--input-border);
+        }
+
+        .meta-tag.price-tag {
+            background: rgba(79, 225, 74, 0.08);
+            color: #2e7d32;
+            border-color: rgba(79, 225, 74, 0.2);
+        }
+        [data-theme="dark"] .meta-tag.price-tag {
+            color: var(--accent-green);
+        }
+
+        .course-body {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+        }
+
+        .course-description p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- ACCORDION CURRICULUM DRIVER --- */
+        .accordion-wrapper {
+            margin-top: 2rem;
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            background: var(--subtle-gray);
+            border: 1px solid var(--input-border);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--card-bg);
+            border-inline: 1px solid var(--glass-border);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .accordion-inner {
+            padding: 1.5rem;
+        }
+
+        .modules-list {
+            list-style: none;
+        }
+
+        .modules-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .modules-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-blue);
+            font-weight: 700;
+        }
+
+        /* --- FAQ COMPONENT INTERFACE --- */
+        .faq-section {
+            background-color: var(--subtle-gray);
+            padding: 6rem 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--card-shadow);
+        }
+
+        .faq-item h4 {
+            font-size: 1.2rem;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* --- ENROLLMENT MODAL OVERLAY --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-box {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 24px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .input-wrapper {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-wrapper label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .modern-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            font-size: 1rem;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .modern-input:focus {
+            border-color: var(--secondary-blue);
+            background-color: var(--card-bg);
+        }
+
+        /* --- FOOTER AREA --- */
+        footer {
+            background-color: #17213f;
+            padding: 4rem 0;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+
+        /* --- BREAKPOINT MEDIAS ENGINE --- */
+        @media (max-width: 1024px) {
+            .course-body { grid-template-columns: 1fr; gap: 2rem; }
+            .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { border-radius: 0; margin: 0; padding: 1.2rem 2rem; }
+            .nav-links { display: none; }
+            .metrics-bar { grid-template-columns: 1fr; margin-top: -2rem; }
+            .course-strip { padding: 2rem; }
+            .page-header-block h1 { font-size: 2.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- --- FLOATING HEADER --- -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="favicon.png" alt="Beryltim Logo" style="height: 28px; width: auto; vertical-align: middle; margin-right: 0.5rem;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="course.html" class="active">The Academy</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div>
+                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">☀️</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- --- ACADEMY HERO OVERVIEW --- -->
+    <div class="page-header-block">
+        <div class="container">
+            <span class="badge" style="color: var(--accent-green); border-color: rgba(79, 225, 74, 0.3); background: rgba(79, 225, 74, 0.05)">Knowledge Matrix</span>
+            <h1>The Academy Curriculums</h1>
+            <p>Professional regulatory strategies, compliance structures, and custom technology masterclasses designed for founders, compliance leads, and developers.</p>
+        </div>
+    </div>
+
+    <!-- --- PRODUCTION METRICS SECTION --- -->
+    <div class="container">
+        <div class="metrics-bar">
+            <div class="metric-item"><h3>480+</h3><p>Graduates Tracked</p></div>
+            <div class="metric-item"><h3>94%</h3><p>First-Time Pass Rate</p></div>
+            <div class="metric-item"><h3>1-on-1</h3><p>Mentorship Tiers</p></div>
+            <div class="metric-item"><h3>Formal</h3><p>Certifications</p></div>
+        </div>
+    </div>
+
+    <!-- --- DYNAMIC CATEGORY FILTERS --- -->
+    <div class="filter-container">
+        <button class="filter-btn active-filter" onclick="filterCourses('all')">All Programs</button>
+        <button class="filter-btn" onclick="filterCourses('business')">Corporate & Legal</button>
+        <button class="filter-btn" onclick="filterCourses('tech')">Engineering & Digital</button>
+    </div>
+
+    <!-- --- MAIN COURSE DATABASE SECTION --- -->
+    <section class="container" id="coursesSection">
+
+        <!-- COURSE 1 -->
+        <div class="course-strip" data-category="business">
+            <div class="course-header-row">
+                <div>
+                    <h2>CAC Compliance & Registrations Matrix</h2>
+                    <div class="course-meta-tags">
+                        <span class="meta-tag">Corporate Setup</span>
+                        <span class="meta-tag">4 Weeks</span>
+                        <span class="meta-tag price-tag">₦150,000</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openEnrollment('CAC Compliance & Registrations Matrix')">Secure Seat</button>
+            </div>
+            <div class="course-body">
+                <div>
+                    <p class="course-description">A precision-driven breakdown of the corporate legal setup framework across Nigeria. This course removes structural guesswork and maps out the explicit execution paths required to submit clear filings cleanly on the first attempt.</p>
+                    <div class="accordion-wrapper">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">View Course Syllabus Breakdown <span>▼</span></button>
+                        <div class="accordion-content">
+                            <div class="accordion-inner">
+                                <ul class="modules-list">
+                                    <li><strong>Week 1:</strong> Limited Liability Architectures & Share Conversions</li>
+                                    <li><strong>Week 2:</strong> Non-Profit Configuration (NGOs & Associations)</li>
+                                    <li><strong>Week 3:</strong> Resolving Administrative and Status Registry Queries</li>
+                                    <li><strong>Week 4:</strong> Post-Incorporation Filing Architecture & App Updates</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="asset-box" style="background: var(--subtle-gray); border-radius: 16px; padding: 2rem; border: 1px solid var(--input-border);">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-navy);">Core Learning Asset Outcomes</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Graduates receive an editable legal tracking library, complete query-resolution code charts, and verified access to our live registry support group.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- COURSE 2 -->
+        <div class="course-strip" data-category="business">
+            <div class="course-header-row">
+                <div>
+                    <h2>Contract Readiness & Proposals Structuring</h2>
+                    <div class="course-meta-tags">
+                        <span class="meta-tag">Legal Infrastructure</span>
+                        <span class="meta-tag">6 Weeks</span>
+                        <span class="meta-tag price-tag">₦180,000</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openEnrollment('Contract Readiness & Proposals Structuring')">Secure Seat</button>
+            </div>
+            <div class="course-body">
+                <div>
+                    <p class="course-description">Position your business infrastructure to align cleanly with high-tier procurement layers. Learn how to draft modern, highly persuasive commercial layout documents that clear strict institutional vetting boards.</p>
+                    <div class="accordion-wrapper">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">View Course Syllabus Breakdown <span>▼</span></button>
+                        <div class="accordion-content">
+                            <div class="accordion-inner">
+                                <ul class="modules-list">
+                                    <li><strong>Week 1-2:</strong> Corporate Proposal Engineering & Narrative Focus</li>
+                                    <li><strong>Week 3-4:</strong> Structuring Service Level Agreements (SLAs) & Escrow Clauses</li>
+                                    <li><strong>Week 5-6:</strong> Institutional Procurement Compliance Mapping</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="asset-box" style="background: var(--subtle-gray); border-radius: 16px; padding: 2rem; border: 1px solid var(--input-border);">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-navy);">Core Learning Asset Outcomes</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Includes 12 fully adjustable enterprise bidding configuration formats and continuous review support on your first real-world tender package submission.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- COURSE 3 -->
+        <div class="course-strip" data-category="business">
+            <div class="course-header-row">
+                <div>
+                    <h2>SCUML & Anti-Money Laundering Frameworks</h2>
+                    <div class="course-meta-tags">
+                        <span class="meta-tag">Financial Integrity</span>
+                        <span class="meta-tag">3 Weeks</span>
+                        <span class="meta-tag price-tag">₦120,000</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openEnrollment('SCUML & Anti-Money Laundering Frameworks')">Secure Seat</button>
+            </div>
+            <div class="course-body">
+                <div>
+                    <p class="course-description">Avoid immediate bank tier limits and severe regulatory asset pauses. Learn exactly how to secure Special Control Unit Against Money Laundering certificates and execute high-integrity anti-money laundering checks smoothly.</p>
+                    <div class="accordion-wrapper">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">View Course Syllabus Breakdown <span>▼</span></button>
+                        <div class="accordion-content">
+                            <div class="accordion-inner">
+                                <ul class="modules-list">
+                                    <li><strong>Week 1:</strong> Anti-Money Laundering Compliance Ecosystem Parameters</li>
+                                    <li><strong>Week 2:</strong> Filing Configurations for SCUML Dynamic Certification</li>
+                                    <li><strong>Week 3:</strong> Handling Cross-Border Auditing and Institutional Tracking</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="asset-box" style="background: var(--subtle-gray); border-radius: 16px; padding: 2rem; border: 1px solid var(--input-border);">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-navy);">Core Learning Asset Outcomes</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Get a verified setup checklist designed to clean corporate operations records instantly before launching formal state audit protocols.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- COURSE 4 -->
+        <div class="course-strip" data-category="tech">
+            <div class="course-header-row">
+                <div>
+                    <h2>Modern Interface Engineering</h2>
+                    <div class="course-meta-tags">
+                        <span class="meta-tag">Web Development</span>
+                        <span class="meta-tag">8 Weeks</span>
+                        <span class="meta-tag price-tag">₦250,000</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openEnrollment('Modern Interface Engineering')">Secure Seat</button>
+            </div>
+            <div class="course-body">
+                <div>
+                    <p class="course-description">A deep structural exploration into production-ready front-end system layouts. Learn to build blazing-fast, robust single-page applications utilizing premium semantic clean structures, asset optimizations, and advanced CSS layers.</p>
+                    <div class="accordion-wrapper">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">View Course Syllabus Breakdown <span>▼</span></button>
+                        <div class="accordion-content">
+                            <div class="accordion-inner">
+                                <ul class="modules-list">
+                                    <li><strong>Week 1-2:</strong> Semantic Layout Architecture & CSS Box Modeling</li>
+                                    <li><strong>Week 3-4:</strong> Asynchronous JavaScript & State Transition Routing</li>
+                                    <li><strong>Week 5-6:</strong> Building Modular Single-Page App Interfaces</li>
+                                    <li><strong>Week 7-8:</strong> Advanced SEO Profiling, Indexing & Hosting Pipelines</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="asset-box" style="background: var(--subtle-gray); border-radius: 16px; padding: 2rem; border: 1px solid var(--input-border);">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-navy);">Core Learning Asset Outcomes</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Complete and launch 3 clean portfolio elements straight to live remote cloud servers under direct code-review supervision.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- COURSE 5 -->
+        <div class="course-strip" data-category="tech">
+            <div class="course-header-row">
+                <div>
+                    <h2>Corporate Branding & Map Optimization</h2>
+                    <div class="course-meta-tags">
+                        <span class="meta-tag">Digital Visibility</span>
+                        <span class="meta-tag">4 Weeks</span>
+                        <span class="meta-tag price-tag">₦140,000</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="openEnrollment('Corporate Branding & Map Optimization')">Secure Seat</button>
+            </div>
+            <div class="course-body">
+                <div>
+                    <p class="course-description">Establish high authority and trust markers instantly. Build cohesive design kit guidelines, and strategically program local mapping systems to capture active organic lead flows efficiently.</p>
+                    <div class="accordion-wrapper">
+                        <button class="accordion-trigger" onclick="toggleAccordion(this)">View Course Syllabus Breakdown <span>▼</span></button>
+                        <div class="accordion-content">
+                            <div class="accordion-inner">
+                                <ul class="modules-list">
+                                    <li><strong>Week 1:</strong> Minimalist & Neo-Brutalist Layout System Core Basics</li>
+                                    <li><strong>Week 2:</strong> Mapping Optimization Matrices for Local Visibility</li>
+                                    <li><strong>Week 3:</strong> Algorithmic Reviews Capturing & Credibility Metrics</li>
+                                    <li><strong>Week 4:</strong> Assembling Global Scalable Corporate Design Sheets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="asset-box" style="background: var(--subtle-gray); border-radius: 16px; padding: 2rem; border: 1px solid var(--input-border);">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-navy);">Core Learning Asset Outcomes</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Unlock premium design baseline kits along with local search structural configurations to jumpstart target client search metrics immediately.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- --- FAQ AREA PRODUCTION BLOCK --- -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; color: var(--primary-navy);">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Are classes held physically or virtually?</h4>
+                    <p>We provide hybrid structures. Theoretical matrices are handled via private interactive video rooms, while technical tracking builds include targeted 1-on-1 development reviews.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I split course payments into installments?</h4>
+                    <p>Yes. All Academy operations support an option to separate fee layers into two equal structured installments: 50% upon initial entry and 50% mid-way through execution loops.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are formal certificates provided at the end?</h4>
+                    <p>Absolutely. Upon clearing structural milestone evaluations cleanly, a signed digital and verifiable Certificate of Competence from Beryltim Consult Ltd is generated for your profile.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What happens if I fall behind on tasks?</h4>
+                    <p>Every single live lesson is automatically recorded in clear streaming formats. If work constraints disrupt your sync path, you can access asset tracking blocks at your convenience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- SEAMLESS ENROLLMENT APPLICATION MODAL --- -->
+    <div class="modal-overlay" id="enrollmentModal">
+        <div class="modal-box">
+            <button class="close-modal" onclick="closeEnrollment()">&times;</button>
+            <h3 style="font-size: 1.75rem; margin-bottom: 0.5rem; color: var(--primary-navy);">Course Enrollment</h3>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;" id="selectedCourseName">Framework Program</p>
+            
+            <form id="enrollForm" onsubmit="handleEnrollSubmit(event)">
+                <div class="input-wrapper">
+                    <label for="studentName">Your Full Name</label>
+                    <input type="text" id="studentName" class="modern-input" placeholder="e.g. Jane Doe" required>
+                </div>
+                <div class="input-wrapper">
+                    <label for="studentEmail">Email Address</label>
+                    <input type="email" id="studentEmail" class="modern-input" placeholder="jane@example.com" required>
+                </div>
+                <div class="input-wrapper">
+                    <label for="studentPhone">Phone Number</label>
+                    <input type="tel" id="studentPhone" class="modern-input" placeholder="e.g. +234..." required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem; border-radius: 12px;">Submit Application ➔</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- --- GLOBAL COMPLIANCE FOOTER --- -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Beryltim Consult Ltd. Complete Academy Framework Interface. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- --- INTERACTIVE PRODUCTION SCRIPT LOGIC --- -->
+    <script>
+        // --- DYNAMIC LIVE ACCORDION SYLLABUS MECHANICS ---
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.innerText = '▼';
+            } else {
+                // Close any open accordions safely first
+                document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = '0px');
+                document.querySelectorAll('.accordion-trigger span').forEach(span => span.innerText = '▼');
+                
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.innerText = '▲';
+            }
+        }
+
+        // --- REAL-TIME INTUITIVE LIVE FILTER SYSTEM ---
+        function filterCourses(category) {
+            // Update filter button styling instantly
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active-filter'));
+            event.target.classList.add('active-filter');
+
+            const strips = document.querySelectorAll('.course-strip');
+            strips.forEach(strip => {
+                if (category === 'all' || strip.getAttribute('data-category') === category) {
+                    strip.style.display = 'block';
+                } else {
+                    strip.style.display = 'none';
+                }
+            });
+        }
+
+        // --- LIGHT / DARK SYSTEM INTERFACE THEME CONTROLLER ---
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const toggleBtn = document.getElementById('themeToggle');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                toggleBtn.innerHTML = '☀️';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                toggleBtn.innerHTML = '🌙';
+            }
+        }
+
+        // --- MODEL CONTROLLER HOOKS ---
+        const modal = document.getElementById('enrollmentModal');
+        const courseNamePlaceholder = document.getElementById('selectedCourseName');
+
+        function openEnrollment(courseName) {
+            courseNamePlaceholder.innerText = courseName;
+            modal.style.display = 'flex';
+        }
+
+        function closeEnrollment() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeEnrollment();
+            }
+        }
+
+        function handleEnrollSubmit(event) {
+            event.preventDefault();
+            var name = document.getElementById('studentName').value;
+            var email = document.getElementById('studentEmail').value;
+            var phone = document.getElementById('studentPhone').value;
+            var course = document.getElementById('selectedCourseName').innerText;
+
+            // WhatsApp send
+            var waNumber = '2348133468405'; // Replace with your WhatsApp number without +
+            var waText =
+                'Hello, I would like to apply for the ' + course + ' course.\n' +
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n' +
+                'Phone: ' + phone;
+            var waUrl = 'https://wa.me/+2348133468405' + waNumber + '?text=' + encodeURIComponent(waText);
+            window.open(waUrl, '_blank');
+
+            // Email send
+            var mailToAddress = 'beryltimconsultltd@gmail.com';
+            var subject = encodeURIComponent('Course Enrollment Request: ' + course);
+            var body = encodeURIComponent(
+                'Hello Beryltim Consult Ltd,\n\n' +
+                'I would like to enroll in the ' + course + ' course.\n\n' +
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n' +
+                'Phone: ' + phone + '\n\n' +
+                'Please send me the next steps and payment details.\n'
+            );
+            window.location.href = 'mailto:' + mailToAddress + '?subject=' + subject + '&body=' + body;
+
+            closeEnrollment();
+            document.getElementById('enrollForm').reset();
+        }
+    </script>
+</body>
+</html>

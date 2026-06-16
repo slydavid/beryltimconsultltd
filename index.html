@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beryltim Consult Ltd | Business, Regulatory & Digital Advisory</title>
+    <!-- Google Fonts for Modern Premium Sans-Serif Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- MODERN DESIGN SYSTEM VARIABLES (LIGHT & DARK INTERFACES) --- */
+        :root {
+            --white: #ffffff;
+            --primary-navy: #17213f;
+            --secondary-blue: #00a0dc;
+            --accent-green: #4fe14a;
+            --dark-green: #318c2e;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(23, 33, 63, 0.05);
+            --card-shadow: 0 20px 40px -15px rgba(23, 33, 63, 0.04);
+            --subtle-gray: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --input-bg: #f8fafc;
+            --input-border: rgba(23, 33, 63, 0.06);
+            --hero-gradient: radial-gradient(circle at 90% 10%, rgba(0, 160, 220, 0.05) 0%, rgba(255, 255, 255, 0) 60%);
+        }
+
+        [data-theme="dark"] {
+            --white: #0f172a;
+            --primary-navy: #ffffff;
+            --glass-bg: rgba(15, 23, 42, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+            --subtle-gray: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --card-bg: #1e293b;
+            --input-bg: #0f172a;
+            --input-border: rgba(255, 255, 255, 0.1);
+            --hero-gradient: radial-gradient(circle at 90% 10%, rgba(0, 160, 220, 0.1) 0%, rgba(15, 23, 42, 0) 65%);
+        }
+
+        /* --- GLOBAL RESET & SMOOTHING --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- MODERN REUSABLE UTILITIES --- */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        section {
+            padding: 8rem 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            background: rgba(0, 160, 220, 0.08);
+            color: var(--secondary-blue);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 160, 220, 0.15);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+
+        .section-header {
+            max-width: 650px;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .grid-bento {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 2.5rem;
+            align-items: stretch;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* --- BUTTON SYSTEM --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.25rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-navy);
+            color: var(--white) !important;
+            box-shadow: 0 10px 25px -5px rgba(23, 33, 63, 0.3);
+        }
+
+        [data-theme="dark"] .btn-primary {
+            background-color: var(--secondary-blue);
+            color: #ffffff !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 160, 220, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            opacity: 0.95;
+        }
+
+        .btn-accent {
+            background-color: var(--accent-green);
+            color: #17213f !important;
+            box-shadow: 0 10px 25px -5px rgba(79, 225, 74, 0.3);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            background-color: var(--dark-green);
+            color: var(--white) !important;
+        }
+
+        .btn-link {
+            color: var(--secondary-blue);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-link:hover {
+            gap: 0.75rem;
+        }
+
+        /* --- FLOATING NAVIGATION BAR WITH BLUR --- */
+        header {
+            position: fixed;
+            top: 1.5rem;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--card-shadow);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary-navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--accent-green));
+            border-radius: 50%;
+        }
+
+        .nav-right-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 2.25rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-navy);
+            font-weight: 600;
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            opacity: 1;
+            color: var(--secondary-blue);
+        }
+
+        /* Modern Light/Dark Mode Switcher Toggle */
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary-navy);
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--subtle-gray);
+        }
+
+        /* Modernized Hamburger Mobile Menu Trigger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            z-index: 1010;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background-color: var(--primary-navy);
+            border-radius: 4px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* Hamburger Transformation into X when Opened */
+        .menu-toggle.open-state span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .menu-toggle.open-state span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open-state span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* --- THE SPA SINGLE-PAGE ROUTING SCHEME --- */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .page.active-page {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- MODERN BENTO CARD DESIGN ELEMENTS --- */
+        .modern-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modern-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .modern-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .pill-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .pill-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.85rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .pill-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.4rem;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+        }
+
+        .asset-box {
+            background: var(--subtle-gray);
+            border-radius: 24px;
+            width: 100%;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        /* --- HERO OVERHAUL --- */
+        .hero-modern {
+            padding-top: 12rem;
+            padding-bottom: 8rem;
+            background: var(--hero-gradient);
+        }
+
+        .hero-modern h1 {
+            font-size: 4.5rem;
+            color: var(--primary-navy);
+            line-height: 1.05;
+            margin-bottom: 2rem;
+        }
+
+        .hero-modern p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        /* --- SERVICES ALTERNATING INTERACTION ROW --- */
+        .premium-row {
+            margin-bottom: 6rem;
+        }
+
+        .premium-row:nth-child(even) .grid-2 {
+            direction: rtl;
+        }
+
+        .premium-row:nth-child(even) .grid-2 .col-text {
+            direction: ltr;
+        }
+
+        .premium-row h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-navy);
+        }
+
+        /* --- CONTACT COMPONENT & SYSTEMS --- */
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .input-wrapper label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary-navy);
+            margin-bottom: 0.65rem;
+        }
+
+        .modern-input {
+            width: 100%;
+            padding: 1.1rem 1.5rem;
+            border-radius: 14px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            font-size: 1rem;
+            color: var(--text-main);
+            outline: none;
+            font-weight: 500;
+        }
+
+        .modern-input:focus {
+            background-color: var(--card-bg);
+            border-color: var(--secondary-blue);
+        }
+
+        /* --- INTERIOR HERO HEADER BLOCKS --- */
+        .page-header-block {
+            background-color: #17213f;
+            padding: 12rem 0 6rem 0;
+            color: #ffffff;
+            position: relative;
+        }
+
+        [data-theme="dark"] .page-header-block {
+            background-color: #1e293b;
+        }
+
+        .page-header-block h1 {
+            font-size: 4rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .page-header-block p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+        }
+
+        /* --- RETROSPECTIVE FOOTER AREA --- */
+        footer {
+            background-color: #17213f;
+            padding: 5rem 0;
+            color: #ffffff;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        [data-theme="dark"] footer {
+            background-color: #0f172a;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* --- OUTRAGEOUSLY ROBUST MOBILE RESPONSIVENESS ENGINE --- */
+        @media (max-width: 1024px) {
+            .hero-modern h1 { font-size: 3.5rem; }
+            .section-header h2 { font-size: 2.5rem; }
+            .grid-2, .grid-3, .grid-bento { grid-template-columns: 1fr !important; gap: 3rem; }
+            .premium-row:nth-child(even) .grid-2 { direction: ltr; }
+            .asset-box { min-height: 350px; }
+        }
+
+        @media (max-width: 768px) {
+            header { top: 0; }
+            .navbar { border-radius: 0; padding: 1.2rem 2rem; border-inline: none; border-top: none; }
+            .menu-toggle { display: flex; }
+            
+            .nav-links {
+                position: fixed;
+                top: -100vh;
+                left: 0;
+                width: 100%;
+                height: auto;
+                max-height: 85vh;
+                overflow-y: auto;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 3rem 2rem;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+                transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                border-bottom: 1px solid var(--glass-border);
+                gap: 2rem;
+            }
+
+            .nav-links.mobile-open {
+                top: 100%;
+            }
+
+            .hero-modern h1 { font-size: 2.75rem; }
+            section { padding: 5rem 0; }
+            .modern-card { padding: 2rem; }
+            .container { padding: 0 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- --- RE-ENGINEERED FLOATING HEADER WITH LIGHT/DARK CONTROLS --- -->
+    <header id="mainHeader">
+        <nav class="navbar">
+            <a href="index.html" class="logo" onclick="switchPage('home')">
+                <img src="logom.png" alt="Beryltim Logo" style="height: 100px; width:110; vertical-align: middle; margin-right: 0.5rem;">
+            </a>
+            
+            <div class="nav-right-container">
+                <ul class="nav-links" id="navMenu">
+                    <li><a href="#" id="link-home" class="active" onclick="switchPage('home')">Home</a></li>
+                    <li><a href="#" id="link-about" onclick="switchPage('about')">About Us</a></li>
+                    <li><a href="#" id="link-services" onclick="switchPage('services')">Services</a></li>
+                    <li><a href="#" id="link-retainer" onclick="switchPage('retainer')">Retainer Framework</a></li>
+                    <li><a href="#" id="link-contact" onclick="switchPage('contact')">Contact</a></li>
+                    <li><a href="course.html" id="link-contact" onclick="switchPage('contact')">Beryltim academy</a></li>
+                    <li><a href="#" class="btn btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.85rem; border-radius: 8px;" onclick="switchPage('contact')">Get Started</a></li>
+                </ul>
+
+                <!-- Theme Toggle Action Switcher -->
+                <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">
+                    ☀️
+                </button>
+
+                <button class="menu-toggle" id="menuBtn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- COMPONENT PAGE 1: HOME                       -->
+    <!-- ============================================ -->
+    <div id="page-home" class="page active-page">
+        <section class="hero-modern">
+            <div class="container grid-2">
+                <div>
+                    <div class="badge">Speed • Correctness • First-Time Approval</div>
+                    <h1>Launch Legally. Operate Efficiently.</h1>
+                    <p>Beryltim Consult Ltd simplifies complex regulatory processes, eliminates avoidable compliance errors, and builds structural business visibility from day one.</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="#" class="btn btn-primary" onclick="switchPage('contact')">Book Consultation</a>
+                        <a href="#" class="btn btn-link" onclick="switchPage('services')">View Capabilities ➔</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="asset-box">
+                        <img src="consult.jpg" width="120%" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="background-color: var(--subtle-gray);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="badge">Core Values</span>
+                    <h2>Built on Strict Execution Matrices</h2>
+                    <p>We eliminate operational uncertainties so your startup or organization can grow without administrative delays.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="modern-card">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
+                        <h3>Speed</h3>
+                        <p>Defined operational turnaround timeframes paired with internal tracking engines ensure seamless file delivery vectors.</p>
+                    </div>
+                    <div class="modern-card">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
+                        <h3>Correctness</h3>
+                        <p>Complete data verification layers check everything manually to remove query liabilities before processing starts.</p>
+                    </div>
+                    <div class="modern-card">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏅</div>
+                        <h3>First-Time Approval</h3>
+                        <p>Internal query resolution systems map completely into our workflows to manage edge exceptions at zero unexpected cost.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="grid-bento">
+                <div class="modern-card" style="background-color: #17213f; color: #ffffff;">
+                    <span class="badge" style="background: rgba(255,255,255,0.05); color: var(--accent-green); border-color: rgba(255,255,255,0.1);">Why Partner With Us</span>
+                    <h3 style="color: #ffffff; font-size: 2.5rem; margin-bottom: 1.5rem;">Process-Driven Business Solutions</h3>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem;">We structure and protect companies across Nigeria. From initial corporate setup files to dynamic web presence frameworks, we coordinate the administrative heavy lifting.</p>
+                    <a href="#" class="btn btn-accent" onclick="switchPage('about')">Our Full Profile</a>
+                </div>
+                <div class="asset-box">
+                    <img src="value.jpg" width="100%" alt="">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- COMPONENT PAGE 2: ABOUT US                   -->
+    <!-- ============================================ -->
+    <div id="page-about" class="page">
+        <div class="page-header-block">
+            <div class="container">
+                <span class="badge" style="color: var(--accent-green); border-color: rgba(79, 225, 74, 0.3); background: rgba(79, 225, 74, 0.05)">About The Firm</span>
+                <h1>Corporate Clarity</h1>
+                <p>Enabling seamless growth blueprints for startups, enterprise systems, and major non-profit organizations.</p>
+            </div>
+        </div>
+
+        <section class="container grid-2">
+            <div>
+                <h2 style="font-size: 2.5rem; color: var(--primary-navy); margin-bottom: 1.5rem;">Simplifying Local and Complex Regulatory Demands</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7;"><strong>Beryltim Consult Ltd</strong> delivers structured corporate registration, strict compliance frameworks, and digital interface branding capabilities. We operate with high speed and absolute accuracy.</p>
+                <p style="color: var(--text-muted); line-height: 1.7;">Our focus maps directly into modern ease-of-doing-business layers. We remove systemic confusion from administrative pipelines, letting management spend time scaling core market deliverables securely.</p>
+            </div>
+            <div>
+                <div class="asset-box">
+                     <img src="gem.jpg" width="100%" alt="">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- COMPONENT PAGE 3: SERVICES                   -->
+    <!-- ============================================ -->
+    <div id="page-services" class="page">
+        <div class="page-header-block">
+            <div class="container">
+                <span class="badge" style="color: var(--secondary-blue); border-color: rgba(0, 160, 220, 0.3); background: rgba(0,160,220,0.05);">Core Capabilities</span>
+                <h1>Advisory Frameworks</h1>
+                <p>Highly defined regulatory products, compliance architectures, and digital setups.</p>
+            </div>
+        </div>
+
+        <section class="container">
+            <div class="premium-row">
+                <div class="grid-2">
+                    <div class="col-text">
+                        <span class="badge">01 . Corporate Setup</span>
+                        <h3>Business Registration & Regulatory Compliance</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Launch with a rock-solid corporate profile. We handle all paperwork accurately to secure processing pipelines from start to finish.</p>
+                        <ul class="pill-list">
+                            <li>CAC Company Setup (Limited Liability Companies) & Business Names</li>
+                            <li>Incorporated Trustees Registrations (NGOs, Associations, Faith Structures)</li>
+                            <li>Tax Identification Number (TIN) Generation Pipelines</li>
+                            <li>SCUML Filings & Anti-Money Laundering Structuring Protocols</li>
+                            <li>Status Adjustments, Documentation Auditing & Post-Incorporation Processing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="asset-box">
+                             <img src="Hand.jpg" width="100%" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-row">
+                <div class="grid-2">
+                    <div class="col-text">
+                        <span class="badge">02 . Corporate Infrastructure</span>
+                        <h3>Advisory, Structuring & Contract Readiness</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">We align your operational processes with enterprise expectations, positioning you cleanly to secure institutional procurement contracts and funding rounds.</p>
+                        <ul class="pill-list">
+                            <li>Internal risk mapping matrices & legal parameter optimization</li>
+                            <li>Professional corporate proposals & concept design documentation</li>
+                            <li>Contract deployment frameworks & verification readiness metrics</li>
+                            <li>SME scaling guidance models built for growth ecosystems</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="asset-box">
+                         <img src="Consult.jpg" width="100%" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-row">
+                <div class="grid-2">
+                    <div class="col-text">
+                        <span class="badge">03 . Product Experience</span>
+                        <h3>Digital Business Solutions & Corporate Branding</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">A verified corporate entity needs clean web assets to build credibility. We develop modern digital assets focused on conversion and trust.</p>
+                        <ul class="pill-list">
+                            <li>Premium responsive website builds using elite layout metrics</li>
+                            <li>Legacy UI redesign, content refactoring, and code performance updates</li>
+                            <li>Corporate identity guidelines, asset packs, and logo systems</li>
+                            <li>Google Business Profile map positioning and indexing visibility</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="asset-box">
+                             <img src="growth.jpg" width="100%" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- COMPONENT PAGE 4: RETAINER                   -->
+    <!-- ============================================ -->
+    <div id="page-retainer" class="page">
+        <div class="page-header-block">
+            <div class="container">
+                <span class="badge" style="color: var(--accent-green); border-color: rgba(79,225,74,0.3); background: rgba(79,225,74,0.05)">Ongoing Coverage</span>
+                <h1>The Retainer Shield</h1>
+                <p>Continuous legal tracking, tax mapping, and on-call consulting access for growing enterprises.</p>
+            </div>
+        </div>
+
+        <section class="container">
+            <div class="grid-2" style="margin-bottom: 6rem;">
+                <div>
+                    <h2 style="font-size: 2.5rem; color: var(--primary-navy); margin-bottom: 1.5rem;">Year-Round Support & Operational Security</h2>
+                    <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">Missing standard regulatory windows yields immediate corporate penalties, asset constraints, and compromised client confidence. Our monthly retainer provides a reliable, remote back-office team to manage these operations for you.</p>
+                    <p style="color: var(--text-muted); line-height: 1.7;">We handle your filing updates, statutory deadline tracking, and profile adjustments so you can focus on building market revenue safely.</p>
+                </div>
+                <div>
+                    <div class="asset-box">
+                         <img src="comply.jpg" width="100%" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="modern-card">
+                    <h3>🛡️ Compliance Shields</h3>
+                    <p>Continuous operational checking loops ensure your corporate data updates stay aligned with statutory filing guidelines.</p>
+                </div>
+                <div class="modern-card">
+                    <h3>📅 Deadline Calendars</h3>
+                    <p>Direct alert processing metrics across annual filings, tax parameters, and regulatory adjustments.</p>
+                </div>
+                <div class="modern-card">
+                    <h3>💻 Technical Evolution</h3>
+                    <p>On-demand maintenance support across digital assets, website changes, and profile indexing parameters.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- COMPONENT PAGE 5: CONTACT                    -->
+    <!-- ============================================ -->
+    <div id="page-contact" class="page">
+        <div class="page-header-block" style="background: #0f172a;">
+            <div class="container">
+                <span class="badge">Engagement Channels</span>
+                <h1>Initiate Strategy</h1>
+                <p>Connect with our corporate advisory panel directly to secure your company parameters.</p>
+            </div>
+        </div>
+
+        <section class="container grid-2">
+            <div>
+                <div class="modern-card" style="box-shadow: 0 30px 70px rgba(0,0,0,0.15);">
+                    <form id="consultationForm" onsubmit="handleFormSubmit(event)">
+                        <div class="input-wrapper">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="modern-input" placeholder="e.g. John Doe" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="modern-input" placeholder="Email Address" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="service">Core Service Vector</label>
+                            <select id="service" class="modern-input" required>
+                                <option value="">-- Choose Objective Framework --</option>
+                                <option value="reg">Business Setup & Compliance Advisory</option>
+                                <option value="structure">Advisory & Contract Readiness</option>
+                                <option value="digital">Digital Builds & Corporate Identity</option>
+                                <option value="retainer">The Monthly Retainer Shield</option>
+                                <option value="retainer">Others.</option>
+                            </select>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="message">Engagement Overview</label>
+                            <textarea id="message" class="modern-input" rows="4" placeholder="Describe your corporate scaling parameters..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem;">Launch Request ➔</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div style="padding-left: 2rem;">
+                <div style="margin-bottom: 3rem;">
+                    <span class="badge">Headquarters Info</span>
+                    <h3 style="font-size: 2rem; color: var(--primary-navy); margin-bottom: 1rem;">Direct Strategic Channels</h3>
+                    <p style="color: var(--text-muted);">10 Block 6, Merit Plaza, Opposite Justrite Superstore, Akobo, Ibadan.</p>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: var(--secondary-blue); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem;">Corporate Mailbox</h4>
+                    <p style="font-size: 1.15rem; font-weight: 600; color: var(--primary-navy);">beryltimconsultltd@gmail.com
+</p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: var(--secondary-blue); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem;">Operational Window</h4>
+                    <p style="font-size: 1.15rem; font-weight: 600; color: var(--primary-navy);">Monday – Friday | 08:00 AM – 05:00 PM</p>
+                </div>
+
+                <div class="asset-box" style="min-height: 220px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3071618490235!2d3.9386995740871042!3d7.431222011951744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1039ed0073ca5091%3A0x95e2b568cf315a7e!2sJustrite%20Superstore%20Akobo%2C%20Ibadan!5e0!3m2!1sen!2sng!4v1780268458010!5m2!1sen!2sng" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- --- HIGH-CONVERSION BANNER --- -->
+    <section style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #ffffff; text-align: center; padding: 7rem 0;">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="color: #ffffff; font-size: 3rem; margin-bottom: 1.5rem;">Ready to Secure Your Operations?</h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 1.25rem; font-weight: 400; margin-bottom: 2.5rem; line-height: 1.6;">"Let us handle the structure, compliance, and visibility — so you can focus entirely on growth."</p>
+            <a href="#" class="btn btn-accent" onclick="switchPage('contact')">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- --- GLOBAL COMPLIANCE FOOTER --- -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Beryltim Consult Ltd. Structured completely for elite responsive processing. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- --- INTERACTIVE ROUTING & RESPONSIVE THEME ENGINE --- -->
+    <script>
+        // Smooth SPA Page Routing Logic
+        function switchPage(pageId) {
+            closeMobileMenu();
+
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active-page'));
+
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => link.classList.remove('active'));
+
+            const activeLink = document.getElementById('link-' + pageId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // --- RELIABLE NAVBAR TOGGLE ENGINE ---
+        const navMenu = document.getElementById('navMenu');
+        const menuBtn = document.getElementById('menuBtn');
+
+        function toggleMobileMenu() {
+            navMenu.classList.toggle('mobile-open');
+            menuBtn.classList.toggle('open-state');
+        }
+
+        function closeMobileMenu() {
+            navMenu.classList.remove('mobile-open');
+            menuBtn.classList.remove('open-state');
+        }
+
+        // Close when clicking completely outside the navigation block area
+        document.addEventListener('click', (event) => {
+            const isClickInsideMenu = navMenu.contains(event.target);
+            const isClickInsideButton = menuBtn.contains(event.target);
+            
+            if (!isClickInsideMenu && !isClickInsideButton && navMenu.classList.contains('mobile-open')) {
+                closeMobileMenu();
+            }
+        });
+
+        // --- LIGHT / DARK THEME TOGGLE CONTROLLER ---
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const toggleBtn = document.getElementById('themeToggle');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                toggleBtn.innerHTML = '☀️';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                toggleBtn.innerHTML = '🌙';
+            }
+        }
+
+        // Clean Lead Management Callback Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            // Collect form data
+            var name = document.getElementById('fullName').value;
+            var email = document.getElementById('email').value;
+            var service = document.getElementById('service').value;
+            var message = document.getElementById('message').value;
+            // WhatsApp number (replace with your actual business number, e.g., 2348012345678 for Nigeria)
+            var phone = '2348133468405'; // <-- Replace with your WhatsApp number, no +, country code first
+            // Compose WhatsApp message
+            var text =
+                'Hello, I would like to request a consultation.\n' +
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n' +
+                'Service: ' + service + '\n' +
+                'Message: ' + message;
+            var url = 'https://wa.me/+2348133468405' + phone + '?text=' + encodeURIComponent(text);
+            window.open(url, '_blank');
+        }
+
+        // Header Scroll Animation Metrics
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                header.style.padding = '0.6rem 2rem';
+            } else {
+                header.style.padding = '0.85rem 2rem';
+            }
+        });
+    </script>
+</body>
+</html>
