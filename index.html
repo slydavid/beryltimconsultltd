@@ -944,7 +944,7 @@
     var message = document.getElementById('message').value;
     
     // WhatsApp number: country code + number, NO + sign, NO leading 0
-    var phone = '2349050909431'; // <-- Replace with your WhatsApp number
+    var phone = ''; // <-- Replace with your WhatsApp number
     
     // Compose WhatsApp message
     var text = 
@@ -955,7 +955,7 @@
         'Message: ' + message;
     
     // Correct WhatsApp URL
-    var url = 'https://wa.me/+2349050909431' + phone + '?text=' + encodeURIComponent(text);
+    var url = 'https://wa.me/2349050909431' + phone + '?text=' + encodeURIComponent(text);
     
     window.open(url, '_blank');
 }
