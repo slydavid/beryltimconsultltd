@@ -934,30 +934,31 @@
         }
 
         // Clean Lead Management Callback Handler
-        function handleFormSubmit(event) {
+       function handleFormSubmit(event) {
     event.preventDefault();
-    
-    // Collect form data
-    var name = document.getElementById('fullName').value;
-    var email = document.getElementById('email').value;
-    var service = document.getElementById('service').value;
-    var message = document.getElementById('message').value;
-    
-    // WhatsApp number: country code + number, NO + sign, NO leading 0
-    var phone = '2349050909431'; // <-- Replace with your WhatsApp number
-    
-    // Compose WhatsApp message
-    var text = 
-        'Hello, I would like to request a consultation.%0A' +
-        'Name: ' + name + '%0A' +
-        'Email: ' + email + '%0A' +
-        'Service: ' + service + '%0A' +
-        'Message: ' + message;
-    
-    // Correct WhatsApp URL
-    var url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
-    
+
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value;
+
+    const whatsappNumber = "2349050909431";
+
+    const text =
+`*NEW CONSULTATION REQUEST*
+
+👤 Full Name: ${fullName}
+📧 Email: ${email}
+📌 Service: ${service}
+
+📝 Message:
+${message}`;
+
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
     window.open(url, '_blank');
+
+    document.getElementById('consultationForm').reset();
 }
 
         // Header Scroll Animation Metrics
