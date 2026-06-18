@@ -900,16 +900,32 @@
             var email = document.getElementById('studentEmail').value;
             var phone = document.getElementById('studentPhone').value;
             var course = document.getElementById('selectedCourseName').innerText;
+function handleFormSubmit(event) {
+    event.preventDefault();
 
-            // WhatsApp send
-            var waNumber = '2348133468405'; // Replace with your WhatsApp number without +
-            var waText =
-                'Hello, I would like to apply for the ' + course + ' course.\n' +
-                'Name: ' + name + '\n' +
-                'Email: ' + email + '\n' +
-                'Phone: ' + phone;
-            var waUrl = 'https://wa.me/+2348133468405' + waNumber + '?text=' + encodeURIComponent(waText);
-            window.open(waUrl, '_blank');
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value;
+
+    const whatsappNumber = "2349050909431";
+
+    const text =
+`*NEW CONSULTATION REQUEST*
+
+👤 Full Name: ${fullName}
+📧 Email: ${email}
+📌 Service: ${service}
+
+📝 Message:
+${message}`;
+
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+    window.open(url, '_blank');
+
+    document.getElementById('consultationForm').reset();
+}
 
             // Email send
             var mailToAddress = 'beryltimconsultltd@gmail.com';
