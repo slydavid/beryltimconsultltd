@@ -825,92 +825,129 @@
     </footer>
 
     <!-- --- INTERACTIVE PRODUCTION SCRIPT LOGIC --- -->
-    <script>
-        // --- DYNAMIC LIVE ACCORDION SYLLABUS MECHANICS ---
-        function toggleAccordion(element) {
-            const content = element.nextElementSibling;
-            const icon = element.querySelector('span');
-            
-            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-                content.style.maxHeight = '0px';
-                icon.innerText = '▼';
-            } else {
-                // Close any open accordions safely first
-                document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = '0px');
-                document.querySelectorAll('.accordion-trigger span').forEach(span => span.innerText = '▼');
-                
-                content.style.maxHeight = content.scrollHeight + "px";
-                icon.innerText = '▲';
-            }
-        }
+<script>
+    // --- DYNAMIC LIVE ACCORDION SYLLABUS MECHANICS ---
+    function toggleAccordion(element) {
+        const content = element.nextElementSibling;
+        const icon = element.querySelector('span');
 
-        // --- REAL-TIME INTUITIVE LIVE FILTER SYSTEM ---
-        function filterCourses(category) {
-            // Update filter button styling instantly
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active-filter'));
-            event.target.classList.add('active-filter');
-
-            const strips = document.querySelectorAll('.course-strip');
-            strips.forEach(strip => {
-                if (category === 'all' || strip.getAttribute('data-category') === category) {
-                    strip.style.display = 'block';
-                } else {
-                    strip.style.display = 'none';
-                }
+        if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+            content.style.maxHeight = '0px';
+            icon.innerText = '▼';
+        } else {
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                el.style.maxHeight = '0px';
             });
-        }
 
-        // --- LIGHT / DARK SYSTEM INTERFACE THEME CONTROLLER ---
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const toggleBtn = document.getElementById('themeToggle');
-            
-            if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                toggleBtn.innerHTML = '☀️';
+            document.querySelectorAll('.accordion-trigger span').forEach(span => {
+                span.innerText = '▼';
+            });
+
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.innerText = '▲';
+        }
+    }
+
+    // --- REAL-TIME INTUITIVE LIVE FILTER SYSTEM ---
+    function filterCourses(category) {
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        buttons.forEach(btn => {
+            btn.classList.remove('active-filter');
+        });
+
+        const strips = document.querySelectorAll('.course-strip');
+
+        strips.forEach(strip => {
+            if (category === 'all' || strip.getAttribute('data-category') === category) {
+                strip.style.display = 'block';
             } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                toggleBtn.innerHTML = '🌙';
+                strip.style.display = 'none';
             }
+        });
+    }
+
+    // --- LIGHT / DARK SYSTEM INTERFACE THEME CONTROLLER ---
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const toggleBtn = document.getElementById('themeToggle');
+
+        if (currentTheme === 'dark') {
+            document.documentElement.removeAttribute('data-theme');
+            toggleBtn.innerHTML = '☀️';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            toggleBtn.innerHTML = '🌙';
+        }
+    }
+
+    // --- ENROLLMENT MODAL CONTROLLER ---
+    const modal = document.getElementById('enrollmentModal');
+    const courseNamePlaceholder = document.getElementById('selectedCourseName');
+
+    function openEnrollment(courseName) {
+        if (courseNamePlaceholder) {
+            courseNamePlaceholder.innerText = courseName;
         }
 
-        // --- MODEL CONTROLLER HOOKS ---
-        const modal = document.getElementById('enrollmentModal');
-        const courseNamePlaceholder = document.getElementById('selectedCourseName');
-
-        function openEnrollment(courseName) {
-            courseNamePlaceholder.innerText = courseName;
+        if (modal) {
             modal.style.display = 'flex';
         }
+    }
 
-        function closeEnrollment() {
+    function closeEnrollment() {
+        if (modal) {
             modal.style.display = 'none';
         }
+    }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeEnrollment();
-            }
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeEnrollment();
         }
+    };
 
-        function handleEnrollSubmit(event) {
-            event.preventDefault();
-            var name = document.getElementById('studentName').value;
-            var email = document.getElementById('studentEmail').value;
-            var phone = document.getElementById('studentPhone').value;
-            var course = document.getElementById('selectedCourseName').innerText;
-function handleFormSubmit(event) {
-    event.preventDefault();
+    // --- COURSE ENROLLMENT FORM ---
+    function handleEnrollSubmit(event) {
+        event.preventDefault();
 
-    const fullName = document.getElementById('fullName').value;
-    const email = document.getElementById('email').value;
-    const service = document.getElementById('service').value;
-    const message = document.getElementById('message').value;
+        const name = document.getElementById('studentName').value;
+        const email = document.getElementById('studentEmail').value;
+        const phone = document.getElementById('studentPhone').value;
+        const course = document.getElementById('selectedCourseName').innerText;
 
-    const whatsappNumber = "2349050909431";
+        const whatsappNumber = "2349050909431";
 
-    const text =
+        const text =
+`*NEW COURSE ENROLLMENT*
+
+👤 Name: ${name}
+📧 Email: ${email}
+📱 Phone: ${phone}
+📚 Course: ${course}`;
+
+        const whatsappURL =
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+        window.open(whatsappURL, '_blank');
+
+        closeEnrollment();
+
+        document.getElementById('enrollForm').reset();
+    }
+
+    // --- CONSULTATION FORM ---
+    function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value;
+
+        const whatsappNumber = "2349050909431";
+
+        const text =
 `*NEW CONSULTATION REQUEST*
 
 👤 Full Name: ${fullName}
@@ -920,29 +957,13 @@ function handleFormSubmit(event) {
 📝 Message:
 ${message}`;
 
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        const url =
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
 
-    window.open(url, '_blank');
+        window.open(url, '_blank');
 
-    document.getElementById('consultationForm').reset();
-}
-
-            // Email send
-            var mailToAddress = 'beryltimconsultltd@gmail.com';
-            var subject = encodeURIComponent('Course Enrollment Request: ' + course);
-            var body = encodeURIComponent(
-                'Hello Beryltim Consult Ltd,\n\n' +
-                'I would like to enroll in the ' + course + ' course.\n\n' +
-                'Name: ' + name + '\n' +
-                'Email: ' + email + '\n' +
-                'Phone: ' + phone + '\n\n' +
-                'Please send me the next steps and payment details.\n'
-            );
-            window.location.href = 'mailto:' + mailToAddress + '?subject=' + subject + '&body=' + body;
-
-            closeEnrollment();
-            document.getElementById('enrollForm').reset();
-        }
-    </script>
+        document.getElementById('consultationForm').reset();
+    }
+</script>
 </body>
 </html>
