@@ -455,6 +455,139 @@
             border-color: var(--secondary-blue);
         }
 
+        /* --- BOOKING PAGE DESIGN --- */
+        .booking-shell {
+            display: grid;
+            grid-template-columns: 0.95fr 1.15fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .booking-sidebar,
+        .booking-form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--card-shadow);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .booking-sidebar {
+            background: linear-gradient(180deg, rgba(0, 160, 220, 0.08), rgba(23, 33, 63, 0.03));
+        }
+
+        .booking-sidebar h3,
+        .booking-form-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-navy);
+        }
+
+        .booking-sidebar p,
+        .booking-form-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .booking-pills {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .booking-pills span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 0.95rem;
+            border-radius: 999px;
+            background: rgba(0, 160, 220, 0.08);
+            border: 1px solid rgba(0, 160, 220, 0.15);
+            color: var(--secondary-blue);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .booking-check-list {
+            list-style: none;
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .booking-check-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .booking-check-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--secondary-blue);
+            font-weight: 900;
+        }
+
+        .booking-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .booking-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .booking-field.full {
+            grid-column: span 2;
+        }
+
+        .booking-field label {
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary-navy);
+        }
+
+        .booking-field input,
+        .booking-field select,
+        .booking-field textarea {
+            width: 100%;
+            padding: 1rem 1.1rem;
+            border-radius: 14px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .booking-field input:focus,
+        .booking-field select:focus,
+        .booking-field textarea:focus {
+            border-color: var(--secondary-blue);
+            background-color: var(--card-bg);
+        }
+
+        .booking-field textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .status-note {
+            margin-top: 1rem;
+            color: var(--secondary-blue);
+            font-weight: 700;
+            min-height: 1.2rem;
+        }
+
         /* --- INTERIOR HERO HEADER BLOCKS --- */
         .page-header-block {
             background-color: #17213f;
@@ -554,9 +687,10 @@
                     <li><a href="#" id="link-about" onclick="switchPage('about')">About Us</a></li>
                     <li><a href="#" id="link-services" onclick="switchPage('services')">Services</a></li>
                     <li><a href="#" id="link-retainer" onclick="switchPage('retainer')">Retainer Framework</a></li>
+                    <li><a href="#" id="link-booking" onclick="switchPage('booking')">Book Session</a></li>
                     <li><a href="#" id="link-contact" onclick="switchPage('contact')">Contact</a></li>
-                    <li><a href="course.html" id="link-contact" onclick="switchPage('contact')">Beryltim academy</a></li>
-                    <li><a href="#" class="btn btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.85rem; border-radius: 8px;" onclick="switchPage('contact')">Get Started</a></li>
+                    <li><a href="course.html" id="link-course" onclick="switchPage('contact')">Beryltim academy</a></li>
+                    <li><a href="#" class="btn btn-primary" style="padding: 0.6rem 1.25rem; font-size: 0.85rem; border-radius: 8px;" onclick="switchPage('booking')">Get Started</a></li>
                 </ul>
 
                 <!-- Theme Toggle Action Switcher -->
@@ -584,7 +718,7 @@
                     <h1>Launch Legally. Operate Efficiently.</h1>
                     <p>Beryltim Consult Ltd simplifies complex regulatory processes, eliminates avoidable compliance errors, and builds structural business visibility from day one.</p>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="#" class="btn btn-primary" onclick="switchPage('contact')">Book Consultation</a>
+                        <a href="#" class="btn btn-primary" onclick="switchPage('booking')">Book Consultation</a>
                         <a href="#" class="btn btn-link" onclick="switchPage('services')">View Capabilities ➔</a>
                     </div>
                 </div>
@@ -787,6 +921,94 @@
     </div>
 
     <!-- ============================================ -->
+    <!-- COMPONENT PAGE 5: BOOKING                   -->
+    <!-- ============================================ -->
+    <div id="page-booking" class="page">
+        <div class="page-header-block" style="background: radial-gradient(circle at 80% 20%, rgba(0, 160, 220, 0.18) 0%, #17213f 70%);">
+            <div class="container">
+                <span class="badge" style="color: var(--accent-green); border-color: rgba(79, 225, 74, 0.3); background: rgba(79, 225, 74, 0.05)">Schedule Your Session</span>
+                <h1>Book a strategy call</h1>
+                <p>Choose the session you want, share a few details, and we’ll help you move from uncertainty to action.</p>
+            </div>
+        </div>
+
+        <section class="container">
+            <div class="booking-shell">
+                <div class="booking-sidebar">
+                    <span class="badge">Why book with us</span>
+                    <h3>Fast answers. Clear next steps.</h3>
+                    <p>Every session is designed to help you solve a real business challenge, whether you are starting, scaling, or fixing operational bottlenecks.</p>
+                    <div class="booking-pills">
+                        <span>Google Meet</span>
+                        <span>Zoom</span>
+                        <span>WhatsApp</span>
+                        <span>Phone</span>
+                    </div>
+                    <ul class="booking-check-list">
+                        <li>Dedicated consultation with a business advisor</li>
+                        <li>Tailored recommendations based on your goals</li>
+                        <li>Action-oriented guidance you can apply immediately</li>
+                    </ul>
+                </div>
+
+                <div class="booking-form-card">
+                    <h3>Booking details</h3>
+                    <p>Pick the service, select your preferred date, and tell us a little about your business challenge.</p>
+                    <form id="bookingWorkflowForm" onsubmit="handleBookingWorkflowSubmit(event)">
+                        <div class="booking-form-grid">
+                            <div class="booking-field">
+                                <label for="bookingFullName">Full name</label>
+                                <input id="bookingFullName" type="text" placeholder="John Doe" required>
+                            </div>
+                            <div class="booking-field">
+                                <label for="bookingEmail">Email address</label>
+                                <input id="bookingEmail" type="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="booking-field">
+                                <label for="bookingPhone">Phone number</label>
+                                <input id="bookingPhone" type="tel" placeholder="080XXXXXXXX" required>
+                            </div>
+                            <div class="booking-field">
+                                <label for="bookingService">Service package</label>
+                                <select id="bookingService" required>
+                                    <option value="">Select a package</option>
+                                    <option>Free 20-Minute Clarity Session</option>
+                                    <option>30-Minute Consultation</option>
+                                    <option>1-Hour Strategy Session</option>
+                                    <option>2-Hour Executive Strategy Session</option>
+                                    <option>Custom Consultation</option>
+                                </select>
+                            </div>
+                            <div class="booking-field">
+                                <label for="bookingDate">Preferred date</label>
+                                <input id="bookingDate" type="date" required>
+                            </div>
+                            <div class="booking-field">
+                                <label for="bookingTime">Preferred time</label>
+                                <select id="bookingTime" required>
+                                    <option value="">Choose a time</option>
+                                    <option>09:00 AM</option>
+                                    <option>10:30 AM</option>
+                                    <option>12:00 PM</option>
+                                    <option>02:00 PM</option>
+                                    <option>03:30 PM</option>
+                                    <option>05:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="booking-field full">
+                                <label for="bookingMessage">What would you like help with?</label>
+                                <textarea id="bookingMessage" placeholder="Tell us about your business, challenge, or goal..." required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">Confirm Booking Request</button>
+                        <div id="bookingStatus" class="status-note"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================ -->
     <!-- COMPONENT PAGE 5: CONTACT                    -->
     <!-- ============================================ -->
     <div id="page-contact" class="page">
@@ -960,6 +1182,37 @@ ${message}`;
 
     document.getElementById('consultationForm').reset();
 }
+
+        function handleBookingWorkflowSubmit(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('bookingFullName').value.trim();
+            const email = document.getElementById('bookingEmail').value.trim();
+            const phone = document.getElementById('bookingPhone').value.trim();
+            const service = document.getElementById('bookingService').value;
+            const date = document.getElementById('bookingDate').value;
+            const time = document.getElementById('bookingTime').value;
+            const message = document.getElementById('bookingMessage').value.trim();
+
+            const whatsappNumber = "2349050909431";
+            const text = `*NEW BOOKING REQUEST*
+
+👤 Full Name: ${fullName}
+📧 Email: ${email}
+📞 Phone: ${phone}
+📌 Service: ${service}
+📅 Preferred Date: ${date}
+🕒 Preferred Time: ${time}
+
+📝 Business Goal:
+${message}`;
+
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+
+            document.getElementById('bookingWorkflowForm').reset();
+            document.getElementById('bookingStatus').textContent = 'Your booking request has been prepared in WhatsApp. We will confirm your session shortly.';
+        }
 
         // Header Scroll Animation Metrics
         window.addEventListener('scroll', () => {
